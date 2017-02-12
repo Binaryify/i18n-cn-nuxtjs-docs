@@ -1,8 +1,33 @@
 ---
-title: "API: middleware 属性"
-description: Documentation is coming soon.
+title: "API: middleware 属性配置"
+description: middleware 属性使得你可以轻易地为 Nuxt.js 配置使用中间件
 ---
 
-# middleware 属性
+# middleware 属性配置
+类型: String 或 Array
+Items: String
+在应用中的特定页面设置中间件
+例子: 
+`pages/secret.vue` 
+```vue
+<template>
+  <h1>Secret page</h1>
+</template>
 
-> 文档未完待续!
+<script>
+export default {
+  middleware: 'authenticated'
+}
+</script>
+```
+`middleware/authenticated.js` 
+```javascript
+export default function ({ store, redirect }) {
+  // If the user is not authenticated
+  if (!store.state.authenticated) {
+    return redirect('/login')
+  }
+}
+``` 
+
+想了解更多关于使用中间件的信息，请移步 [中间件指引](https://cn.nuxtjs.org/guide/routing/#中间件)。
